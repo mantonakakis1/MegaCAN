@@ -3,7 +3,6 @@
 
 #include "Arduino.h"
 const extern uint32_t baseID;
-// #define BASEID 1512
 
 typedef struct MegaCAN_message_t {
   struct {
