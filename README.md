@@ -42,8 +42,12 @@ Although you can access all structures/objects, classes, functions, etc. from yo
     * `&respMsg`: A MegaCAN_message_t where the response message parameters will be stored.
     * `var0`, `var1`, `var2`, `var3`: uint16_t encoded data variables; the actual data that you want to send to each of the four GPIO ADC channels in the Megasquirt.
   * `getBCastData()`: Processes an 11-bit Megasquirt Advanced Data Broadcast CAN message into the values shown in the [Megasquirt CAN broadcasting manual](http://www.msextra.com/doc/pdf/Megasquirt_CAN_Broadcast.pdf#page=6&zoom=100,114,89).
-    * You'll need to call this function **every time** you get a CAN broadcast message from Megasquirt!
+    * You'll need to call this function **every time** you get a CAN broadcast message from Megasquirt if you don't want to miss data!
     * You'll also need to define a global (i.e. before your setup() function) `const uint32_t baseID = 1512;` taking care to set it to match your Megasquirt settings.
+    * Requires the following arguments:
+      * `id`: The uint32_t CAN message ID parameter of the received broadcast message.
+      * `data[8]`: The eight uint8_t bytes of CAN message data buffer of the received broadcast message.
+      * `&msg`: The MegaCAN_broadcast_message_t where you want to store the processed data.
     
 ## Disclaimer, Issues, Contributing, Requests
 This is my first library. I am using it on my own car to simultaneously process broadcast messages, and send data back to a Megasquirt 2 with the Extra 3.4.3 firmware using the 29-bit extended request/response protocol for datalogging extra channels. With roughly 1000 miles of driving, it has worked flawlessly. That said, I am by no means a professional developer, and since this is my first library, I am sure there is a huge amount of room for improvement.
