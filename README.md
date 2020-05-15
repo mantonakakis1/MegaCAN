@@ -50,9 +50,8 @@ Although you can access all structures/objects, classes, functions, etc. from yo
       * `&msg`: The MegaCAN_broadcast_message_t where you want to store the processed data.
     
 ## Disclaimer, Issues, Contributing, Requests
-This is my first library. I am using it on my own car to simultaneously process broadcast messages, and send data back to a Megasquirt 2 with the Extra 3.4.3 firmware using the 29-bit extended request/response protocol for datalogging extra channels. With roughly 1000 miles of driving, it has worked flawlessly. That said, I am by no means a professional developer, and since this is my first library, I am sure there is a huge amount of room for improvement.
-I'll do my best to help if you encounter problems, but don't set your hopes too high, I hardly know what I'm doing.
-If you have suggestions for improvement, by all means let me know what I should do better! (referring to coding practices/technical advice)
+I am using it on my own car to simultaneously process broadcast messages, and send data back to a Megasquirt 2 with the Extra 3.4.3 firmware using the 29-bit extended request/response protocol for datalogging extra channels. With roughly 1000 miles of driving, it has worked flawlessly. That said, I am by no means a professional developer, and since this is my first library, I am sure there is room for improvement.
+I'll do my best to help if you encounter problems, and if you have suggestions for improvement, by all means let me know what should be changed! (referring to coding practices/technical advice)
 Feature requests will definitely be considered, too! But implementation will be limited by my free time and capacity to figure out how to build them. 
 
 ## To Do
