@@ -69,8 +69,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 		case 2:
 			msg.baro= ((data[0] << 8) | data[1]) / (float)10;
 			msg.map = ((data[2] << 8) | data[3]) / (float)10;
-			msg.mat = ((data[4] << 8) | data[5]) / (float)10;
-			msg.clt = ((data[6] << 8) | data[7]) / (float)10;
+			msg.mat = ((((data[4] << 8) | data[5]) / (float)10) - 32) * 0.555555; // celsius
+			msg.clt = ((((data[6] << 8) | data[7]) / (float)10) - 32) * 0.555555; // celsius
+			//msg.mat = ((data[4] << 8) | data[5]) / (float)10; // fahrenheit
+			//msg.clt = ((data[6] << 8) | data[7]) / (float)10; // fahrenheit
 			break;
 		case 3:
 			msg.tps = ((data[0] << 8) | data[1]) / (float)10;
