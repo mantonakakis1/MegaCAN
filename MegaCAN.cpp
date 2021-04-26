@@ -212,7 +212,7 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.egt5 = ((data[0] << 8) | data[1]) / (float)10;
 			msg.egt6 = ((data[2] << 8) | data[3]) / (float)10;
 			msg.egt7 = ((data[4] << 8) | data[5]) / (float)10;
-			msg.egt8 = ((data[6] << 8) | data[7]) / (float)10;+
+			msg.egt8 = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
 				msg.egt5 = (msg.egt5 - 32) * 9 / 5;
 				msg.egt6 = (msg.egt6 - 32) * 9 / 5;
