@@ -72,8 +72,8 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.mat = ((data[4] << 8) | data[5]) / (float)10;			
 			msg.clt = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
-				msg.mat = (msg.mat - 32) * 9 / 5;
-				msg.clt = (msg.clt - 32) * 9 / 5;
+				msg.mat = (msg.mat - 32) * 5 / 9;
+				msg.clt = (msg.clt - 32) * 5 / 9;
 			#endif
 			break;
 		case 3:
@@ -134,7 +134,7 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.ignload2 = ((data[4] << 8) | data[5]) / (float)10;
 			msg.airtemp = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
-				msg.airtemp = (msg.airtemp - 32) * 9 / 5;
+				msg.airtemp = (msg.airtemp - 32) * 5 / 9;
 			#endif
 			break;
 		case 12:
@@ -202,10 +202,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.egt3 = ((data[4] << 8) | data[5]) / (float)10;
 			msg.egt4 = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
-				msg.egt1 = (msg.egt1 - 32) * 9 / 5;
-				msg.egt2 = (msg.egt2 - 32) * 9 / 5;
-				msg.egt3 = (msg.egt3 - 32) * 9 / 5;
-				msg.egt4 = (msg.egt4 - 32) * 9 / 5;
+				msg.egt1 = (msg.egt1 - 32) * 5 / 9;
+				msg.egt2 = (msg.egt2 - 32) * 5 / 9;
+				msg.egt3 = (msg.egt3 - 32) * 5 / 9;
+				msg.egt4 = (msg.egt4 - 32) * 5 / 9;
 			#endif
 			break;
 		case 23:
@@ -214,10 +214,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.egt7 = ((data[4] << 8) | data[5]) / (float)10;
 			msg.egt8 = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
-				msg.egt5 = (msg.egt5 - 32) * 9 / 5;
-				msg.egt6 = (msg.egt6 - 32) * 9 / 5;
-				msg.egt7 = (msg.egt7 - 32) * 9 / 5;
-				msg.egt8 = (msg.egt8 - 32) * 9 / 5;
+				msg.egt5 = (msg.egt5 - 32) * 5 / 9;
+				msg.egt6 = (msg.egt6 - 32) * 5 / 9;
+				msg.egt7 = (msg.egt7 - 32) * 5 / 9;
+				msg.egt8 = (msg.egt8 - 32) * 5 / 9;
 			#endif
 			break;
 		case 24:
@@ -226,10 +226,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.egt11 = ((data[4] << 8) | data[5]) / (float)10;
 			msg.egt12 = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
-				msg.egt9 = (msg.egt9 - 32) * 9 / 5;
-				msg.egt10 = (msg.egt10 - 32) * 9 / 5;
-				msg.egt11 = (msg.egt11 - 32) * 9 / 5;
-				msg.egt12 = (msg.egt12 - 32) * 9 / 5;
+				msg.egt9 = (msg.egt9 - 32) * 5 / 9;
+				msg.egt10 = (msg.egt10 - 32) * 5 / 9;
+				msg.egt11 = (msg.egt11 - 32) * 5 / 9;
+				msg.egt12 = (msg.egt12 - 32) * 5 / 9;
 			#endif
 			break;
 		case 25:
@@ -238,10 +238,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.egt15 = ((data[4] << 8) | data[5]) / (float)10;
 			msg.egt16 = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
-				msg.egt13 = (msg.egt13 - 32) * 9 / 5;
-				msg.egt14 = (msg.egt14 - 32) * 9 / 5;
-				msg.egt15 = (msg.egt15 - 32) * 9 / 5;
-				msg.egt16 = (msg.egt16 - 32) * 9 / 5;
+				msg.egt13 = (msg.egt13 - 32) * 5 / 9;
+				msg.egt14 = (msg.egt14 - 32) * 5 / 9;
+				msg.egt15 = (msg.egt15 - 32) * 5 / 9;
+				msg.egt16 = (msg.egt16 - 32) * 5 / 9;
 			#endif
 			break;
 		case 26:
@@ -445,8 +445,8 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
 			msg.fuel_temp1 = ((data[4] << 8) | data[5]) / (float)10;
 			msg.fuel_temp2 = ((data[6] << 8) | data[7]) / (float)10;
 			#ifdef CELSIUS
-				msg.fuel_temp1 = (msg.fuel_temp1 - 32) * 9 / 5;
-				msg.fuel_temp2 = (msg.fuel_temp2 - 32) * 9 / 5;
+				msg.fuel_temp1 = (msg.fuel_temp1 - 32) * 5 / 9;
+				msg.fuel_temp2 = (msg.fuel_temp2 - 32) * 5 / 9;
 			#endif
 			break;
 		case 54:
