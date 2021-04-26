@@ -48,12 +48,15 @@ Although you can access all structures/objects, classes, functions, etc. from yo
       * `id`: The uint32_t CAN message ID parameter of the received broadcast message.
       * `data[8]`: The eight uint8_t bytes of CAN message data buffer of the received broadcast message.
       * `&msg`: The MegaCAN_broadcast_message_t where you want to store the processed data.
+* Temperature unit conversion:
+  * Add "#define CELSIUS" to the precompiler code in your Arduino sketch to automatically convert any temperature-unit broadcast data from the Megasquirt to celsius; if you don't include that in your code, the default of Fahrenheit will be used.
+  * This is implemented in the getBCastData() function, and will happen automatically any time you process a broadcast message received from the Megasquirt.
     
 ## Disclaimer, Issues, Contributing, Requests
 I am using it on my own car to simultaneously process broadcast messages, and send data back to a Megasquirt 2 with the Extra 3.4.3 firmware using the 29-bit extended request/response protocol for datalogging extra channels. With roughly 1000 miles of driving, it has worked flawlessly. That said, I am by no means a professional developer, and since this is my first library, I am sure there is room for improvement.
-I'll do my best to help if you encounter problems, and if you have suggestions for improvement, by all means let me know what should be changed! (referring to coding practices/technical advice)
-Feature requests will definitely be considered, too! But implementation will be limited by my free time and capacity to figure out how to build them. 
+I'll do my best to help if you encounter problems, and if you have suggestions for improvement, bug fixes, feature requests, by all means let me know what should be changed! Implementation of these will be limited by my free time, but I'll do my best to get them updated.
 
 ## To Do
 * Include examples.
 * Add simple dash broadcasting support.
+* Add a config file to make it easier to turn features on/off to save memory and improve usability.
