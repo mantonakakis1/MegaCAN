@@ -16,7 +16,7 @@ typedef struct MegaCAN_message_t {
   struct {
     struct {
       uint8_t varByt = 0; // number of bytes requested
-      uint16_t varOffset = 0;  // MS offset for storing repsonse data
+      uint32_t varOffset = 0;  // MS offset for storing repsonse data
       uint8_t varBlk = 0; // MS table for storing response data
     } request; //unpacked    
     uint8_t response[8] = { 0 }; // response data bytes back to requester, up to 8 bytes
