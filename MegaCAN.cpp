@@ -12,7 +12,7 @@ void MegaCAN::processMSreq(uint32_t msgCore, const uint8_t msgData[8], MegaCAN_m
   msg.core.msgType = (msgCore & ~(0b11111111111111000111111111111111)) >> 15; //set msgType to bits 17-15 of msgCore
   msg.core.toOffset =  (msgCore & ~(0b11100000000000111111111111111111)) >> 18; //set toOffset to bits 28-18 of msgCore
 	
-  msg.rawData = msgData;	// Don't clobber data for msgType != 1
+  for (uint8_t i = 0; i < 8; i++) msg.rawData[i] = msgData[i];	// Don't clobber data for msgType != 1
 
   // Process message data - Only valid if msgType is 1.
   msg.data.request.varBlk = msgData[0];
