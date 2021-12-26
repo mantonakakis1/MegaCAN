@@ -21,6 +21,7 @@ typedef struct MegaCAN_message_t {
     } request; //unpacked    
     uint8_t response[8] = { 0 }; // response data bytes back to requester, up to 8 bytes
   } data;  //packed
+  uint8_t rawData[8] = 0;
 } MegaCAN_message_t;
 
 typedef struct MegaCAN_broadcast_message_t {
