@@ -3,7 +3,7 @@
 
 MegaCAN::MegaCAN() {}
 
-void MegaCAN::processMSreq(uint32_t msgCore, const uint8_t msgData[3], MegaCAN_message_t &msg) {
+void MegaCAN::processMSreq(uint32_t msgCore, const uint8_t msgData[8], MegaCAN_message_t &msg) {
   // Process message core
   msg.core.toTable =   (msgCore & ~(0b11111111111111111111111111111011)) << 2; //set bit 4 of toTable to bit 2 of msgCore
   msg.core.toTable |=  (msgCore & ~(0b11111111111111111111111110000111)) >> 3; //set bits 3-0 of toTable to bits 6-3 of msgCore
@@ -11,8 +11,10 @@ void MegaCAN::processMSreq(uint32_t msgCore, const uint8_t msgData[3], MegaCAN_m
   msg.core.fromID =  (msgCore & ~(0b11111111111111111000011111111111)) >> 11; //set FromID to bits 14-11 of msgCore
   msg.core.msgType = (msgCore & ~(0b11111111111111000111111111111111)) >> 15; //set msgType to bits 17-15 of msgCore
   msg.core.toOffset =  (msgCore & ~(0b11100000000000111111111111111111)) >> 18; //set toOffset to bits 28-18 of msgCore
+	
+  msg.rawData = msgData;	// Don't clobber data for msgType != 1
 
-  // Process message data
+  // Process message data - Only valid if msgType is 1.
   msg.data.request.varBlk = msgData[0];
   msg.data.request.varOffset = msgData[1];
   msg.data.request.varOffset = (msg.data.request.varOffset << 3) | (msgData[2] >> 5);
