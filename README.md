@@ -54,7 +54,7 @@ Although you can access all structures/objects, classes, functions, etc. from yo
     
 ## Disclaimer, Issues, Contributing, Requests
 I am using it on my own car to simultaneously process broadcast messages, and send data back to a Megasquirt 2 with the Extra 3.4.3 firmware using the 29-bit extended request/response protocol for datalogging extra channels. With roughly 1000 miles of driving, it has worked flawlessly. That said, I am by no means a professional developer, and since this is my first library, I am sure there is room for improvement.
-I'll do my best to help if you encounter problems, and if you have suggestions for improvement, bug fixes, feature requests, by all means let me know what should be changed! Implementation of these will be limited by my free time, but I'll do my best to get them updated.
+I'll do my best to help if you encounter problems, and if you have suggestions for improvement, bug fixes, feature requests, by all means let me know what should be changed!
 
 ## To Do
 * Include examples.
