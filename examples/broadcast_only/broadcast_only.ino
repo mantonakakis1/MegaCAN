@@ -42,6 +42,9 @@ void canMShandler(const CAN_message_t &msg) {
 void setup() {
   while (!Serial);
   Serial.begin(115200);
+
+  initializeCAN();
+
   Serial.println("MAP | RPM | TPS");
 }
 

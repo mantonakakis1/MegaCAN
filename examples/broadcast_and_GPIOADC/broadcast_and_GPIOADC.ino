@@ -65,7 +65,7 @@ void canMShandler(const CAN_message_t &msg) {
 void sendDataToMS(CAN_message_t msg) {
   MegaCAN.processMSreq(msg.id, msg.buf, recMsgMSC); // Unpack request message ("msg") from MS into recMsgMS
   adc7 = analogRead(ANALOGPIN); //you can add a sensor or potentiometer here, or just read the floating voltage for this example
-  
+
   if (recMsgMSC.core.toOffset == 0) { //for GPIOADC0-3
     GPIOADC[0] = adc0; //get oil presure, set to MSCAN ouput, send to Nextion too
     GPIOADC[1] = adc1; //get fuel pressure, set to MSCAN output, send to Nextion too
@@ -80,7 +80,7 @@ void sendDataToMS(CAN_message_t msg) {
     GPIOADC[7] = adc7; //dome actual pressure kPa absolute
     MegaCAN.setMSresp(recMsgMSC, respMsgMSC, GPIOADC[4], GPIOADC[5], GPIOADC[6], GPIOADC[7]); //packs the GPIOADC4-7 values into "respMsgMSC"
   }
-  
+
   // Send response to Megasquirt using MSCAN protocol:
   respMsg.id = respMsgMSC.responseCore;
   respMsg.len = sizeof(respMsgMSC.data.response);
@@ -94,6 +94,7 @@ void sendDataToMS(CAN_message_t msg) {
 void setup() {
   while (!Serial);
   Serial.begin(115200);
+  initializeCAN();
   pinMode(ANALOGPIN, INPUT);
   Serial.println("MAP | RPM | TPS");
 }
