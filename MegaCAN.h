@@ -458,7 +458,7 @@ class MegaCAN
 {
 public:
   MegaCAN();
-  MegaCAN(const uint32_t baseId);
+  MegaCAN(const uint32_t &baseId);
 
   void processMSreq(uint32_t msgCore, const uint8_t msgData[3], MegaCAN_message_t &msg);
   void setMSresp(MegaCAN_message_t recMsg, MegaCAN_message_t &respMsg, uint16_t var0, uint16_t var1, uint16_t var2, uint16_t var3);
