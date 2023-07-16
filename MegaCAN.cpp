@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 
+// Old implementation that allows for global baseID variable. This is for legacy reasons, do not use this in new code.
 MegaCAN::MegaCAN() : _baseId(baseID) {}
 
 MegaCAN::MegaCAN(const uint32_t baseId) : _baseId(baseId) {}
