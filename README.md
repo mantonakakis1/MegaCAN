@@ -43,7 +43,7 @@ Although you can access all structures/objects, classes, functions, etc. from yo
     * `var0`, `var1`, `var2`, `var3`: uint16_t encoded data variables; the actual data that you want to send to each of the four GPIO ADC channels in the Megasquirt.
   * `getBCastData()`: Processes an 11-bit Megasquirt Advanced Data Broadcast CAN message into the values shown in the [Megasquirt CAN broadcasting manual](http://www.msextra.com/doc/pdf/Megasquirt_CAN_Broadcast.pdf#page=6&zoom=100,114,89).
     * You'll need to call this function **every time** you get a CAN broadcast message from Megasquirt if you don't want to miss data!
-    * You'll also need to define a global (i.e. before your setup() function) `const uint32_t baseID = 1512;` taking care to set it to match your Megasquirt settings.
+    * You'll also need to pass in a baseID that matches your Megasquirt settings into the constructor or define a global (i.e. before your setup() function) `const uint32_t baseID = 1512;`.
     * Requires the following arguments:
       * `id`: The uint32_t CAN message ID parameter of the received broadcast message.
       * `data[8]`: The eight uint8_t bytes of CAN message data buffer of the received broadcast message.
@@ -51,7 +51,7 @@ Although you can access all structures/objects, classes, functions, etc. from yo
 * Temperature unit conversion:
   * Add "#define CELSIUS" to the precompiler code in your Arduino sketch to automatically convert any temperature-unit broadcast data from the Megasquirt to celsius; if you don't include that in your code, the default of Fahrenheit will be used.
   * This is implemented in the getBCastData() function, and will happen automatically any time you process a broadcast message received from the Megasquirt.
-    
+
 ## Disclaimer, Issues, Contributing, Requests
 I am using it on my own car to simultaneously process broadcast messages, and send data back to a Megasquirt 2 with the Extra 3.4.3 firmware using the 29-bit extended request/response protocol for datalogging extra channels. With roughly 1000 miles of driving, it has worked flawlessly. That said, I am by no means a professional developer, and since this is my first library, I am sure there is room for improvement.
 I'll do my best to help if you encounter problems, and if you have suggestions for improvement, bug fixes, feature requests, by all means let me know what should be changed!
