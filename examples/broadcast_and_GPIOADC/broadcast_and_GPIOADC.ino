@@ -7,7 +7,7 @@ const uint32_t baseID = 1512; // Must set to match Megasquirt Settings!
 const uint32_t finalID = baseID + 17; // Must set to match Megasquirt Settings configured in TunerStudio!
 
 FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> Can; // For CAN communications between devices, this example uses the "CAN2" port/pins on a Teensy 4.0
-MegaCAN MegaCAN; // For processed Megasquirt CAN protocol messages 
+MegaCAN MegaCAN(baseID); // For processed Megasquirt CAN protocol messages
 
 MegaCAN_message_t recMsgMSC; // stores received message from Megasquirt, Megasquirt CAN protocol
 MegaCAN_message_t respMsgMSC; // stores response message back to Megasquirt, Megasquirt CAN protocol
@@ -24,7 +24,7 @@ uint16_t adc3 = 40;
 uint16_t adc4 = 50;
 uint16_t adc5 = 60;
 uint16_t adc6 = 70;
-uint16_t adc7; //will use this for updated analogRead value each cycle 
+uint16_t adc7; //will use this for updated analogRead value each cycle
 
 void initializeCAN() {
   Can.begin();

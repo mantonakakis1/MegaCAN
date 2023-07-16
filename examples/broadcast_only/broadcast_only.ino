@@ -5,7 +5,7 @@ const uint32_t baseID = 1512; // Must set to match Megasquirt Settings!
 const uint32_t finalID = baseID + 17; // Must set to match Megasquirt Settings configured in TunerStudio!
 
 FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> Can; // For CAN communications between devices, this example uses the "CAN2" port/pins on a Teensy 4.0
-MegaCAN MegaCAN; // For processed Megasquirt CAN protocol messages
+MegaCAN MegaCAN(baseID); // For processed Megasquirt CAN protocol messages
 
 MegaCAN_broadcast_message_t bCastMsg; // stores unpacked Megasquirt broadcast data, e.g. bCastMsg.rpm
 
