@@ -62,7 +62,7 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.rpm = (data[6] << 8) | data[7];
       break;
     case 1:
-      msg.adv_deg = ((data[0] << 8) | data[1]) / (float)10;
+      msg.adv_deg = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
       msg.squirt = data[2];
       msg.engine = data[3];
       msg.afrtgt1 = data[4] / (float)10;
@@ -71,55 +71,55 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.wbo2_en2 = data[7];
       break;
     case 2:
-      msg.baro = ((data[0] << 8) | data[1]) / (float)10;
-      msg.map = ((data[2] << 8) | data[3]) / (float)10;
-      msg.mat = ((data[4] << 8) | data[5]) / (float)10;
-      msg.clt = ((data[6] << 8) | data[7]) / (float)10;
+      msg.baro = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.map = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.mat = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.clt = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       #ifdef CELSIUS
           msg.mat = (msg.mat - 32) * 5 / 9;
           msg.clt = (msg.clt - 32) * 5 / 9;
       #endif
       break;
     case 3:
-      msg.tps = ((data[0] << 8) | data[1]) / (float)10;
-      msg.batt = ((data[2] << 8) | data[3]) / (float)10;
-      msg.afr1_old = ((data[4] << 8) | data[5]) / (float)10;
-      msg.afr2_old = ((data[4] << 8) | data[5]) / (float)10;
+      msg.tps = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.batt = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.afr1_old = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.afr2_old = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
       break;
     case 4:
-      msg.knock = ((data[0] << 8) | data[1]) / (float)10;
-      msg.egocor1 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.egocor2 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.aircor = ((data[6] << 8) | data[7]) / (float)10;
+      msg.knock = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.egocor1 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.egocor2 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.aircor = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 5:
-      msg.warmcor = ((data[0] << 8) | data[1]) / (float)10;
-      msg.tpsaccel = ((data[2] << 8) | data[3]) / (float)10;
-      msg.tpsfuelcut = ((data[4] << 8) | data[5]) / (float)10;
-      msg.barocor = ((data[6] << 8) | data[7]) / (float)10;
+      msg.warmcor = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.tpsaccel = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.tpsfuelcut = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.barocor = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 6:
-      msg.totalcor = ((data[0] << 8) | data[1]) / (float)10;
-      msg.ve1 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.ve2 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.iacstep = (data[6] << 8) | data[7];
-      msg.iacduty = ((data[6] << 8) | data[7]) * (float)392 / (float)1000;
+      msg.totalcor = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.ve1 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.ve2 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.iacstep = static_cast<int16_t>(data[6] << 8) | data[7];
+      msg.iacduty = static_cast<int16_t>((data[6] << 8) | data[7]) * (float)392 / (float)1000;
       break;
     case 7:
-      msg.cold_adv_deg = ((data[0] << 8) | data[1]) / (float)10;
-      msg.TPSdot = ((data[2] << 8) | data[3]) / (float)10;
-      msg.MAPdot = (data[4] << 8) | data[5];
-      msg.RPMdot = ((data[6] << 8) | data[7]) * (float)10;
+      msg.cold_adv_deg = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.TPSdot = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.MAPdot = static_cast<int16_t>(data[4] << 8) | data[5];
+      msg.RPMdot = static_cast<int16_t>((data[6] << 8) | data[7]) * (float)10;
       break;
     case 8:
-      msg.MAFload = ((data[0] << 8) | data[1]) / (float)10;
-      msg.fuelload = ((data[2] << 8) | data[3]) / (float)10;
-      msg.fuelcor = ((data[4] << 8) | data[5]) / (float)10;
-      msg.MAF = ((data[6] << 8) | data[7]) / (float)100;
+      msg.MAFload = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.fuelload = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.fuelcor = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.MAF = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)100;
       break;
     case 9:
-      msg.egoV1 = ((data[0] << 8) | data[1]) / (float)100;
-      msg.egoV2 = ((data[2] << 8) | data[3]) / (float)100;
+      msg.egoV1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)100;
+      msg.egoV2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)100;
       msg.dwell = ((data[4] << 8) | data[5]) / (float)10;
       msg.dwell_trl = ((data[6] << 8) | data[7]) / (float)10;
       break;
@@ -128,83 +128,83 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.status2 = data[1];
       msg.status3 = data[2];
       msg.status4 = data[3];
-      msg.status5 = (data[4] << 8) | data[5];
+      msg.status5 = static_cast<int16_t>((data[4] << 8) | data[5]);
       msg.status6 = data[6];
       msg.status7 = data[7];
       break;
     case 11:
-      msg.fuelload2 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.ignload = ((data[2] << 8) | data[3]) / (float)10;
-      msg.ignload2 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.airtemp = ((data[6] << 8) | data[7]) / (float)10;
+      msg.fuelload2 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.ignload = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.ignload2 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.airtemp = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       #ifdef CELSIUS
           msg.airtemp = (msg.airtemp - 32) * 5 / 9;
       #endif
     break;
     case 12:
-      msg.wallfuel1 = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) / (float)100;
-      msg.wallfuel2 = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) / (float)100;
+      msg.wallfuel1 = static_cast<int32_t>((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) / (float)100;
+      msg.wallfuel2 = static_cast<int32_t>((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) / (float)100;
       break;
     case 13:
-      msg.sensors1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.sensors2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.sensors3 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.sensors4 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.sensors1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.sensors2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.sensors3 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.sensors4 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 14:
-      msg.sensors5 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.sensors6 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.sensors7 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.sensors8 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.sensors5 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.sensors6 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.sensors7 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.sensors8 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 15:
-      msg.sensors9 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.sensors10 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.sensors11 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.sensors12 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.sensors9 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.sensors10 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.sensors11 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.sensors12 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 16:
-      msg.sensors13 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.sensors14 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.sensors15 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.sensors16 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.sensors13 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.sensors14 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.sensors15 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.sensors16 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 17:
-      msg.boost_targ_1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.boost_targ_2 = ((data[2] << 8) | data[3]) / (float)10;
+      msg.boost_targ_1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.boost_targ_2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
       msg.boostduty = data[4];
       msg.boostduty2 = data[5];
-      msg.maf_volts = ((data[6] << 8) | data[7]) / (float)1000;
+      msg.maf_volts = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)1000;
       break;
     case 18:
-      msg.pwseq1 = ((data[0] << 8) | data[1]) / (float)1000;
-      msg.pwseq2 = ((data[2] << 8) | data[3]) / (float)1000;
-      msg.pwseq3 = ((data[4] << 8) | data[5]) / (float)1000;
-      msg.pwseq4 = ((data[6] << 8) | data[7]) / (float)1000;
+      msg.pwseq1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)1000;
+      msg.pwseq2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)1000;
+      msg.pwseq3 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)1000;
+      msg.pwseq4 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)1000;
       break;
     case 19:
-      msg.pwseq5 = ((data[0] << 8) | data[1]) / (float)1000;
-      msg.pwseq6 = ((data[2] << 8) | data[3]) / (float)1000;
-      msg.pwseq7 = ((data[4] << 8) | data[5]) / (float)1000;
-      msg.pwseq8 = ((data[6] << 8) | data[7]) / (float)1000;
+      msg.pwseq5 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)1000;
+      msg.pwseq6 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)1000;
+      msg.pwseq7 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)1000;
+      msg.pwseq8 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)1000;
       break;
     case 20:
-      msg.pwseq9 = ((data[0] << 8) | data[1]) / (float)1000;
-      msg.pwseq10 = ((data[2] << 8) | data[3]) / (float)1000;
-      msg.pwseq11 = ((data[4] << 8) | data[5]) / (float)1000;
-      msg.pwseq12 = ((data[6] << 8) | data[7]) / (float)1000;
+      msg.pwseq9 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)1000;
+      msg.pwseq10 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)1000;
+      msg.pwseq11 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)1000;
+      msg.pwseq12 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)1000;
       break;
     case 21:
-      msg.pwseq13 = ((data[0] << 8) | data[1]) / (float)1000;
-      msg.pwseq14 = ((data[2] << 8) | data[3]) / (float)1000;
-      msg.pwseq15 = ((data[4] << 8) | data[5]) / (float)1000;
-      msg.pwseq16 = ((data[6] << 8) | data[7]) / (float)1000;
+      msg.pwseq13 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)1000;
+      msg.pwseq14 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)1000;
+      msg.pwseq15 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)1000;
+      msg.pwseq16 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)1000;
       break;
     case 22:
-      msg.egt1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.egt2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.egt3 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.egt4 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.egt1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.egt2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.egt3 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.egt4 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       #ifdef CELSIUS
           msg.egt1 = (msg.egt1 - 32) * 5 / 9;
           msg.egt2 = (msg.egt2 - 32) * 5 / 9;
@@ -213,10 +213,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       #endif
       break;
     case 23:
-      msg.egt5 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.egt6 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.egt7 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.egt8 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.egt5 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.egt6 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.egt7 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.egt8 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       #ifdef CELSIUS
           msg.egt5 = (msg.egt5 - 32) * 5 / 9;
           msg.egt6 = (msg.egt6 - 32) * 5 / 9;
@@ -225,10 +225,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       #endif
       break;
     case 24:
-      msg.egt9 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.egt10 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.egt11 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.egt12 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.egt9 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.egt10 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.egt11 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.egt12 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       #ifdef CELSIUS
           msg.egt9 = (msg.egt9 - 32) * 5 / 9;
           msg.egt10 = (msg.egt10 - 32) * 5 / 9;
@@ -237,10 +237,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       #endif
       break;
     case 25:
-      msg.egt13 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.egt14 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.egt15 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.egt16 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.egt13 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.egt14 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.egt15 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.egt16 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       #ifdef CELSIUS
           msg.egt13 = (msg.egt13 - 32) * 5 / 9;
           msg.egt14 = (msg.egt14 - 32) * 5 / 9;
@@ -252,31 +252,31 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.nitrous1_duty = data[0];
       msg.nitrous2_duty = data[1];
       msg.nitrous_timer_out = ((data[2] << 8) | data[3]) / (float)1000;
-      msg.n2o_addfuel = ((data[4] << 8) | data[5]) / (float)1000;
-      msg.n2o_retard = ((data[6] << 8) | data[7]) / (float)10;
+      msg.n2o_addfuel = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)1000;
+      msg.n2o_retard = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 27:
-      msg.canpwmin1 = (data[0] << 8) | data[1];
-      msg.canpwmin2 = (data[2] << 8) | data[3];
-      msg.canpwmin3 = (data[4] << 8) | data[5];
-      msg.canpwmin4 = (data[6] << 8) | data[7];
+      msg.canpwmin1 = static_cast<int16_t>(data[0] << 8) | data[1];
+      msg.canpwmin2 = static_cast<int16_t>(data[2] << 8) | data[3];
+      msg.canpwmin3 = static_cast<int16_t>(data[4] << 8) | data[5];
+      msg.canpwmin4 = static_cast<int16_t>(data[6] << 8) | data[7];
       break;
     case 28:
       msg.cl_idle_targ_rpm = (data[0] << 8) | data[1];
-      msg.tpsadc = (data[2] << 8) | data[3];
-      msg.eaeload = ((data[4] << 8) | data[5]) / (float)10;
-      msg.afrload = ((data[6] << 8) | data[7]) / (float)10;
+      msg.tpsadc = static_cast<int16_t>(data[2] << 8) | data[3];
+      msg.eaeload = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.afrload = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 29:
       msg.EAEfcor1 = ((data[0] << 8) | data[1]) / (float)10;
       msg.EAEfcor2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.VSS1dot = ((data[4] << 8) | data[5]) / (float)10;
-      msg.VSS2dot = ((data[6] << 8) | data[7]) / (float)10;
+      msg.VSS1dot = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.VSS2dot = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 30:
-      msg.accelx = ((data[0] << 8) | data[1]) / (float)1000;
-      msg.accely = ((data[2] << 8) | data[3]) / (float)1000;
-      msg.accelz = ((data[4] << 8) | data[5]) / (float)1000;
+      msg.accelx = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)1000;
+      msg.accely = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)1000;
+      msg.accelz = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)1000;
       msg.stream_level = data[6];
       msg.water_duty = data[7];
       break;
@@ -311,52 +311,52 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.status8 = data[7];
       break;
     case 34:
-      msg.EGOv1 = ((data[0] << 8) | data[1]) * (float)489 / (float)100000;
-      msg.EGOv2 = ((data[2] << 8) | data[3]) * (float)489 / (float)100000;
-      msg.EGOv3 = ((data[4] << 8) | data[5]) * (float)489 / (float)100000;
-      msg.EGOv4 = ((data[6] << 8) | data[7]) * (float)489 / (float)100000;
+      msg.EGOv1 = static_cast<int16_t>((data[0] << 8) | data[1]) * (float)489 / (float)100000;
+      msg.EGOv2 = static_cast<int16_t>((data[2] << 8) | data[3]) * (float)489 / (float)100000;
+      msg.EGOv3 = static_cast<int16_t>((data[4] << 8) | data[5]) * (float)489 / (float)100000;
+      msg.EGOv4 = static_cast<int16_t>((data[6] << 8) | data[7]) * (float)489 / (float)100000;
       break;
     case 35:
-      msg.EGOv5 = ((data[0] << 8) | data[1]) * (float)489 / (float)100000;
-      msg.EGOv6 = ((data[2] << 8) | data[3]) * (float)489 / (float)100000;
-      msg.EGOv7 = ((data[4] << 8) | data[5]) * (float)489 / (float)100000;
-      msg.EGOv8 = ((data[6] << 8) | data[7]) * (float)489 / (float)100000;
+      msg.EGOv5 = static_cast<int16_t>((data[0] << 8) | data[1]) * (float)489 / (float)100000;
+      msg.EGOv6 = static_cast<int16_t>((data[2] << 8) | data[3]) * (float)489 / (float)100000;
+      msg.EGOv7 = static_cast<int16_t>((data[4] << 8) | data[5]) * (float)489 / (float)100000;
+      msg.EGOv8 = static_cast<int16_t>((data[6] << 8) | data[7]) * (float)489 / (float)100000;
       break;
     case 36:
-      msg.EGOv9 = ((data[0] << 8) | data[1]) * (float)489 / (float)100000;
-      msg.EGOv10 = ((data[2] << 8) | data[3]) * (float)489 / (float)100000;
-      msg.EGOv11 = ((data[4] << 8) | data[5]) * (float)489 / (float)100000;
-      msg.EGOv12 = ((data[6] << 8) | data[7]) * (float)489 / (float)100000;
+      msg.EGOv9 = static_cast<int16_t>((data[0] << 8) | data[1]) * (float)489 / (float)100000;
+      msg.EGOv10 = static_cast<int16_t>((data[2] << 8) | data[3]) * (float)489 / (float)100000;
+      msg.EGOv11 = static_cast<int16_t>((data[4] << 8) | data[5]) * (float)489 / (float)100000;
+      msg.EGOv12 = static_cast<int16_t>((data[6] << 8) | data[7]) * (float)489 / (float)100000;
       break;
     case 37:
-      msg.EGOv13 = ((data[0] << 8) | data[1]) * (float)489 / (float)100000;
-      msg.EGOv14 = ((data[2] << 8) | data[3]) * (float)489 / (float)100000;
-      msg.EGOv15 = ((data[4] << 8) | data[5]) * (float)489 / (float)100000;
-      msg.EGOv16 = ((data[6] << 8) | data[7]) * (float)489 / (float)100000;
+      msg.EGOv13 = static_cast<int16_t>((data[0] << 8) | data[1]) * (float)489 / (float)100000;
+      msg.EGOv14 = static_cast<int16_t>((data[2] << 8) | data[3]) * (float)489 / (float)100000;
+      msg.EGOv15 = static_cast<int16_t>((data[4] << 8) | data[5]) * (float)489 / (float)100000;
+      msg.EGOv16 = static_cast<int16_t>((data[6] << 8) | data[7]) * (float)489 / (float)100000;
       break;
     case 38:
-      msg.EGOcor1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.EGOcor2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.EGOcor3 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.EGOcor4 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.EGOcor1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.EGOcor2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.EGOcor3 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.EGOcor4 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 39:
-      msg.EGOcor5 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.EGOcor6 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.EGOcor7 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.EGOcor8 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.EGOcor5 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.EGOcor6 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.EGOcor7 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.EGOcor8 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 40:
-      msg.EGOcor9 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.EGOcor10 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.EGOcor11 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.EGOcor12 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.EGOcor9 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.EGOcor10 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.EGOcor11 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.EGOcor12 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 41:
-      msg.EGOcor13 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.EGOcor14 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.EGOcor15 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.EGOcor16 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.EGOcor13 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.EGOcor14 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.EGOcor15 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.EGOcor16 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 42:
       msg.VSS1 = ((data[0] << 8) | data[1]) / (float)10;
@@ -374,28 +374,28 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.timing_err = data[7];
       break;
     case 44:
-      msg.vvt_ang1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.vvt_ang2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.vvt_ang3 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.vvt_ang4 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.vvt_ang1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.vvt_ang2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.vvt_ang3 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.vvt_ang4 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 45:
-      msg.vvt_target1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.vvt_target2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.vvt_target3 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.vvt_target4 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.vvt_target1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.vvt_target2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.vvt_target3 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.vvt_target4 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 46:
       msg.vvt_duty1 = data[0] * (float)392 / (float)1000;
       msg.vvt_duty1 = data[1] * (float)392 / (float)1000;
       msg.vvt_duty1 = data[2] * (float)392 / (float)1000;
       msg.vvt_duty1 = data[3] * (float)392 / (float)1000;
-      msg.inj_timing_pri = ((data[4] << 8) | data[5]) / (float)10;
-      msg.inj_timing_sec = ((data[6] << 8) | data[7]) / (float)10;
+      msg.inj_timing_pri = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.inj_timing_sec = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 47:
-      msg.fuel_pct = ((data[0] << 8) | data[1]) / (float)10;
-      msg.tps_accel = ((data[2] << 8) | data[3]) / (float)10;
+      msg.fuel_pct = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.tps_accel = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
       msg.SS1 = ((data[4] << 8) | data[5]) * 10;
       msg.SS2 = ((data[6] << 8) | data[7]) * 10;
       break;
@@ -420,10 +420,10 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.knock_cyl16 = data[7] * (float)4 / (float)10;
       break;
     case 50:
-      msg.map_accel = ((data[0] << 8) | data[1]) / (float)10;
-      msg.total_accel = ((data[2] << 8) | data[3]) / (float)10;
+      msg.map_accel = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.total_accel = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
       msg.launch_timer = ((data[4] << 8) | data[5]) / (float)1000;
-      msg.launch_retard = ((data[6] << 8) | data[7]) / (float)10;
+      msg.launch_retard = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 51:
       msg.porta = data[0];
@@ -444,17 +444,17 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.fuelcons = (data[6] << 8) | data[7];
       break;
     case 53:
-      msg.fuel_press1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.fuel_press2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.fuel_temp1 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.fuel_temp2 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.fuel_press1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.fuel_press2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.fuel_temp1 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.fuel_temp2 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       #ifdef CELSIUS
           msg.fuel_temp1 = (msg.fuel_temp1 - 32) * 5 / 9;
           msg.fuel_temp2 = (msg.fuel_temp2 - 32) * 5 / 9;
       #endif
       break;
     case 54:
-      msg.batt_cur = ((data[0] << 8) | data[1]) / (float)10;
+      msg.batt_cur = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
       msg.cel_status = (data[2] << 8) | data[3];
       msg.fp_duty = data[4] * (float)392 / (float)1000;
       msg.alt_duty = data[5];
@@ -469,33 +469,33 @@ void MegaCAN::getBCastData(uint32_t id, const uint8_t data[8], MegaCAN_broadcast
       msg.sp1 = data[7];
       break;
     case 56:
-      msg.tc_retard = ((data[0] << 8) | data[1]) / (float)10;
-      msg.cel_retard = ((data[2] << 8) | data[3]) / (float)10;
-      msg.fc_retard = ((data[4] << 8) | data[5]) / (float)10;
-      msg.als_addfuel = ((data[6] << 8) | data[7]) / (float)1000;
+      msg.tc_retard = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.cel_retard = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.fc_retard = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.als_addfuel = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)1000;
       break;
     case 57:
-      msg.base_advance = ((data[0] << 8) | data[1]) / (float)10;
-      msg.idle_cor_advance = ((data[2] << 8) | data[3]) / (float)10;
-      msg.mat_retard = ((data[4] << 8) | data[5]) / (float)10;
-      msg.flex_advance = ((data[6] << 8) | data[7]) / (float)10;
+      msg.base_advance = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.idle_cor_advance = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.mat_retard = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.flex_advance = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 58:
-      msg.adv1 = ((data[0] << 8) | data[1]) / (float)10;
-      msg.adv2 = ((data[2] << 8) | data[3]) / (float)10;
-      msg.adv3 = ((data[4] << 8) | data[5]) / (float)10;
-      msg.adv4 = ((data[6] << 8) | data[7]) / (float)10;
+      msg.adv1 = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.adv2 = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.adv3 = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.adv4 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)10;
       break;
     case 59:
-      msg.revlim_retard = ((data[0] << 8) | data[1]) / (float)10;
-      msg.als_timing = ((data[2] << 8) | data[3]) / (float)10;
-      msg.ext_advance = ((data[4] << 8) | data[5]) / (float)10;
-      msg.deadtime1 = ((data[6] << 8) | data[7]) / (float)1000;
+      msg.revlim_retard = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.als_timing = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.ext_advance = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
+      msg.deadtime1 = static_cast<int16_t>((data[6] << 8) | data[7]) / (float)1000;
       break;
     case 60:
-      msg.launch_timing = ((data[0] << 8) | data[1]) / (float)10;
-      msg.step3_timing = ((data[2] << 8) | data[3]) / (float)10;
-      msg.vsslaunch_retard = ((data[4] << 8) | data[5]) / (float)10;
+      msg.launch_timing = static_cast<int16_t>((data[0] << 8) | data[1]) / (float)10;
+      msg.step3_timing = static_cast<int16_t>((data[2] << 8) | data[3]) / (float)10;
+      msg.vsslaunch_retard = static_cast<int16_t>((data[4] << 8) | data[5]) / (float)10;
       msg.cel_status2 = (data[6] << 8) | data[7];
       break;
     case 61:
