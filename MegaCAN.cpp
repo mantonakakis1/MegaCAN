@@ -5,7 +5,7 @@
 // Old implementation that allows for global baseID variable. This is for legacy reasons, do not use this in new code.
 MegaCAN::MegaCAN() : _baseId(baseID) {}
 
-MegaCAN::MegaCAN(const uint32_t &baseId) : _baseId(baseId) {}
+MegaCAN::MegaCAN(const uint32_t baseId) : _baseId(baseId) {}
 
 void MegaCAN::processMSreq(uint32_t msgCore, const uint8_t msgData[3], MegaCAN_message_t &msg) {
   // Process message core
